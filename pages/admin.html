@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — AXIOM</title>
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<div class="confirm-dialog" id="confirm-dialog">
+  <div class="confirm-box">
+    <div class="confirm-icon">⚠️</div>
+    <div class="confirm-title" id="confirm-title">Are you sure?</div>
+    <div class="confirm-msg" id="confirm-msg"></div>
+    <div class="confirm-btns">
+      <button class="btn-confirm-yes" id="confirm-yes-btn">Delete</button>
+      <button class="btn-confirm-no" id="confirm-no-btn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-page">
+  <div class="login-card">
+    <div class="login-logo">RAJINIKANTH</div>
+    <div class="login-subtitle">Admin Portal</div>
+    <form class="login-form" id="login-form">
+      <div class="input-wrap">
+        <label class="input-label">Username</label>
+        <input class="form-input" type="text" name="username" placeholder="admin" required autocomplete="username">
+      </div>
+      <div class="input-wrap">
+        <label class="input-label">Password</label>
+        <input class="form-input" type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+      <div class="login-error" id="login-error"></div>
+      <button type="submit" class="btn-login">SIGN IN</button>
+    </form>
+    <div class="login-back"><a href="../index.html">← Back to Portfolio</a></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="dash-layout">
+    <aside class="dash-sidebar" id="dash-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">RAJINIKANTH</div>
+        <div class="sidebar-role">Admin Dashboard</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main</div>
+        <div class="nav-item active" data-page="dashboard"><span class="nav-icon">📊</span> Dashboard</div>
+        <div class="nav-item" data-page="media"><span class="nav-icon">🎬</span> Media Manager</div>
+        <div class="nav-item" data-page="comments"><span class="nav-icon">💬</span> Comments<span class="nav-badge" id="comments-badge" style="display:none">0</span></div>
+        <div class="nav-section-title">Content</div>
+        <div class="nav-item" data-page="categories"><span class="nav-icon">🏷️</span> Categories</div>
+        <div class="nav-item" data-page="testimonials"><span class="nav-icon">⭐</span> Testimonials</div>
+        <div class="nav-section-title">Site</div>
+        <div class="nav-item" onclick="window.open('../index.html','_blank')"><span class="nav-icon">🌐</span> View Portfolio</div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="admin-info">
+          <div class="admin-avatar" id="admin-avatar-char">A</div>
+          <div>
+            <div class="admin-name" id="admin-name-display">Admin</div>
+            <div class="admin-role">Administrator</div>
+          </div>
+        </div>
+        <button class="btn-logout" id="logout-btn">Sign Out</button>
+      </div>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-topbar">
+        <div class="topbar-title" id="topbar-title">Dashboard</div>
+        <div class="topbar-actions">
+          <button class="btn-action primary" id="add-media-btn">+ Upload Media</button>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <div class="dash-page active" id="page-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card cyan"><div class="stat-icon">🎬</div><div class="stat-value" id="stat-media">—</div><div class="stat-label">Total Media</div></div>
+          <div class="stat-card magenta"><div class="stat-icon">👁️</div><div class="stat-value" id="stat-views">—</div><div class="stat-label">Total Views</div></div>
+          <div class="stat-card gold"><div class="stat-icon">❤️</div><div class="stat-value" id="stat-likes">—</div><div class="stat-label">Total Likes</div></div>
+          <div class="stat-card green"><div class="stat-icon">💬</div><div class="stat-value" id="stat-comments">—</div><div class="stat-label">Comments</div></div>
+          <div class="stat-card cyan"><div class="stat-icon">⏳</div><div class="stat-value" id="stat-pending">—</div><div class="stat-label">Pending Reviews</div></div>
+          <div class="stat-card gold"><div class="stat-icon">⭐</div><div class="stat-value" id="stat-featured">—</div><div class="stat-label">Featured Media</div></div>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border-glass);padding:40px;text-align:center">
+          <div style="font-family:var(--font-display);font-size:32px;letter-spacing:0.05em;margin-bottom:8px">Welcome Back!</div>
+          <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);letter-spacing:0.2em">AXIOM PORTFOLIO MANAGEMENT SYSTEM</div>
+          <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <button class="btn-action primary" onclick="document.querySelector('[data-page=media]').click()">Manage Media</button>
+            <button class="btn-action secondary" onclick="document.querySelector('[data-page=comments]').click()">Review Comments</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEDIA -->
+      <div class="dash-page" id="page-media">
+        <div class="table-wrap">
+          <div class="table-header">
+            <div class="table-title">Media Projects</div>
+            <button class="btn-action primary" onclick="openAddMedia()">+ Add Media</button>
+          </div>
+          <table><thead><tr><th>Media</th><th>Views</th><th>Likes</th><th>Badges</th><th>Date</th><th>Actions</th></tr></thead>
+          <tbody id="media-tbody"><tr><td colspan="6" class="empty-state">Loading...</td></tr></tbody></table>
+          <div class="table-pagination">
+            <div class="page-info" id="media-page-info"></div>
+            <div class="page-btns">
+              <button class="page-btn" id="media-prev-btn" disabled>← Prev</button>
+              <button class="page-btn" id="media-next-btn">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMENTS -->
+      <div class="dash-page" id="page-comments">
+        <div style="display:flex;gap:8px;margin-bottom:20px">
+          <button class="btn-action secondary" data-filter="all" style="border-color:var(--neon-cyan);color:var(--neon-cyan)">All</button>
+          <button class="btn-action secondary" data-filter="pending">Pending</button>
+          <button class="btn-action secondary" data-filter="approved">Approved</button>
+        </div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Author</th><th>Comment</th><th>Media</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="comments-tbody"><tr><td colspan="5" class="empty-state">Loading...</td></tr></tbody></table>
+          <div class="table-pagination">
+            <div class="page-info" id="comments-page-info"></div>
+            <div class="page-btns">
+              <button class="page-btn" id="comments-prev-btn" disabled>← Prev</button>
+              <button class="page-btn" id="comments-next-btn">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORIES -->
+      <div class="dash-page" id="page-categories">
+        <div style="margin-bottom:20px"><button class="btn-action primary" id="add-cat-btn">+ Add Category</button></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Name</th><th>Slug</th><th>Actions</th></tr></thead>
+          <tbody id="categories-tbody"></tbody></table>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="dash-page" id="page-testimonials">
+        <div style="margin-bottom:20px"><button class="btn-action primary" id="add-test-btn">+ Add Testimonial</button></div>
+        <div class="table-wrap">
+          <table><thead><tr><th>Client</th><th>Review</th><th>Rating</th><th>Actions</th></tr></thead>
+          <tbody id="testimonials-tbody"></tbody></table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- MEDIA MODAL -->
+<div class="modal-overlay" id="media-modal">
+  <div class="modal-box">
+    <div class="modal-head"><h2 id="media-modal-title">Add Media</h2><button class="modal-close-btn" onclick="document.getElementById('media-modal').classList.remove('open')">✕</button></div>
+    <form id="media-form" onsubmit="return false;">
+    <div class="modal-body">
+      <input type="hidden" id="media-id-field">
+      <div class="field-group"><label class="field-label">Title *</label><input class="field-input" id="media-title-field" type="text" placeholder="Project title"></div>
+      <div class="field-group"><label class="field-label">Description</label><textarea class="field-input field-textarea" id="media-desc-field" placeholder="Project description..."></textarea></div>
+      <div class="field-group"><label class="field-label">Video URL (YouTube Embed)</label><input class="field-input" id="media-url-field" type="text" placeholder="https://www.youtube.com/embed/..."></div>
+      <div class="field-row">
+        <div class="field-group"><label class="field-label">Category</label><select class="field-input field-select" id="media-category-select"><option value="">— Select —</option></select></div>
+        <div class="field-group"><label class="field-label">Media Type</label><select class="field-input field-select" id="media-type-select"><option value="VIDEO">Video</option><option value="REEL">Reel</option><option value="CINEMATIC">Cinematic</option><option value="GAMING">Gaming</option><option value="MOTION_GRAPHICS">Motion Graphics</option><option value="SOCIAL_MEDIA">Social Media</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field-group"><label class="field-label">Duration</label><input class="field-input" id="media-duration-field" type="text" placeholder="3:45"></div>
+        <div class="field-group"><label class="field-label">Client Name</label><input class="field-input" id="media-client-field" type="text" placeholder="Client / Brand"></div>
+      </div>
+      <div class="field-group"><label class="field-label">Tags (comma separated)</label><input class="field-input" id="media-tags-field" type="text" placeholder="cinematic, travel"></div>
+      <div class="field-group"><label class="field-label">Upload Video File (optional)</label><input class="field-input" id="media-video-file" type="file" accept="video/*"></div>
+      <div class="field-group"><label class="field-label">Upload Thumbnail</label><input class="field-input" id="media-thumb-file" type="file" accept="image/*"></div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <label class="field-check"><input type="checkbox" id="media-featured-check"><span>Featured</span></label>
+        <label class="field-check"><input type="checkbox" id="media-trending-check"><span>Trending</span></label>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn-cancel" onclick="document.getElementById('media-modal').classList.remove('open')">Cancel</button>
+      <button type="button" class="btn-save" id="media-save-btn">Save Media</button>
+    </div>
+    </form>
+  </div>
+</div>
+
+<!-- CATEGORY MODAL -->
+<div class="modal-overlay" id="category-modal">
+  <div class="modal-box" style="max-width:420px">
+    <div class="modal-head"><h2>Add Category</h2><button class="modal-close-btn" onclick="document.getElementById('category-modal').classList.remove('open')">✕</button></div>
+    <div class="modal-body">
+      <div class="field-group"><label class="field-label">Category Name *</label><input class="field-input" id="cat-name-field" type="text" placeholder="e.g. Cinematic"></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="document.getElementById('category-modal').classList.remove('open')">Cancel</button>
+      <button class="btn-save" id="cat-save-btn">Create</button>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL MODAL -->
+<div class="modal-overlay" id="testimonial-modal">
+  <div class="modal-box">
+    <div class="modal-head"><h2 id="testimonial-modal-title">Add Testimonial</h2><button class="modal-close-btn" onclick="document.getElementById('testimonial-modal').classList.remove('open')">✕</button></div>
+    <div class="modal-body">
+      <input type="hidden" id="test-id-field">
+      <div class="field-row">
+        <div class="field-group"><label class="field-label">Client Name *</label><input class="field-input" id="test-name-field" type="text"></div>
+        <div class="field-group"><label class="field-label">Title / Role</label><input class="field-input" id="test-title-field" type="text"></div>
+      </div>
+      <div class="field-group"><label class="field-label">Company</label><input class="field-input" id="test-company-field" type="text"></div>
+      <div class="field-group"><label class="field-label">Review *</label><textarea class="field-input field-textarea" id="test-content-field"></textarea></div>
+      <div class="field-row">
+        <div class="field-group"><label class="field-label">Rating (1-5)</label><input class="field-input" id="test-rating-field" type="number" min="1" max="5" value="5"></div>
+        <div class="field-group" style="justify-content:flex-end;padding-top:28px"><label class="field-check"><input type="checkbox" id="test-featured-check" checked><span>Show on site</span></label></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="document.getElementById('testimonial-modal').classList.remove('open')">Cancel</button>
+      <button class="btn-save" id="test-save-btn">Save</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="../js/admin.js"></script>
+</body>
+</html>

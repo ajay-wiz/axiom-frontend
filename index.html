@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Professional video & content editor specializing in cinematic edits, gaming montages, motion graphics, and reels.">
+  <meta name="keywords" content="video editor, content creator, cinematic, gaming, reels, motion graphics, portfolio">
+  <meta property="og:title" content="RAJINIKANTH — Video Editor Portfolio">
+  <meta property="og:description" content="Cinematic video editing portfolio">
+  <title>RAJINIKANTH — Video Editor Portfolio</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="loader-logo">RAJINIKANTH</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-text">LOADING PORTFOLIO</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- VIDEO MODAL -->
+<div id="video-modal">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="video-embed-wrap">
+      <div id="modal-video-embed"></div>
+    </div>
+    <div class="modal-details">
+      <div id="modal-title" class="modal-title"></div>
+      <div id="modal-desc" class="modal-desc"></div>
+      <div class="modal-actions">
+        <button class="action-btn" id="modal-like-btn">🤍 Like</button>
+        <span id="modal-views" style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted)"></span>
+        <span id="modal-likes" style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted)"></span>
+      </div>
+      <div class="comment-section">
+        <h3>Comments</h3>
+        <form class="comment-form" id="comment-form">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <input type="text" name="name" placeholder="Your name *" required>
+            <input type="email" name="email" placeholder="Email (optional)">
+          </div>
+          <textarea name="content" rows="3" placeholder="Write a comment..." required></textarea>
+          <button type="submit" class="btn-primary" style="align-self:flex-start;padding:12px 28px;font-size:11px">POST COMMENT</button>
+        </form>
+        <div class="comment-list" id="comment-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">RAJINIKANTH</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#portfolio">Work</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="pages/admin.html" class="nav-cta">Admin</a>
+  </div>
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <canvas id="particles-canvas" class="hero-particles"></canvas>
+    <div class="hero-gradient"></div>
+    <div class="hero-lines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Video Editor & Motion Designer</div>
+    <h1 class="hero-name">
+      <span class="line1">RAJINIKANTH</span>
+    </h1>
+    <p class="hero-tagline">
+      Crafting cinematic stories through precision editing,
+      color grading, and motion design that captivates audiences.
+    </p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">
+        View My Work
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#contact" class="btn-outline">Hire Me</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <div class="scroll-text">Scroll</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-frame">
+          <div class="about-placeholder">
+    <img src="assets/client.jpeg" alt="Rajinikanth"
+         class="about-client-image"></div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <div class="section-label reveal">About</div>
+        <h2 class="section-title reveal">Telling Stories <span>Frame</span> By Frame</h2>
+        <p class="about-bio reveal">
+          I'm <strong>Rajinikanth</strong>, a cinematic video editor based in HYDERABAD with over 3 years of
+          experience crafting compelling visual narratives. From <strong>YouTube documentaries</strong> to
+          <strong>Wedding Videos</strong>, <strong>Instagram reels</strong> to
+          <strong>brand commercials</strong> — every frame is intentional.
+        </p>
+        <p class="about-bio reveal">
+          My work has accumulated over <strong>Good reach</strong> across platforms, helping
+          creators and brands build audiences, tell stories, and drive real engagement.
+        </p>
+        <div class="skills-grid reveal">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Color Grading</span>
+              <span class="skill-pct">95%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Motion Graphics</span>
+              <span class="skill-pct">90%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Sound Design</span>
+              <span class="skill-pct">85%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Cinematic Edit</span>
+              <span class="skill-pct">97%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="97"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">VFX / Compositing</span>
+              <span class="skill-pct">80%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Beat Sync Editing</span>
+              <span class="skill-pct">93%</span>
+            </div>
+            <div class="skill-track"><div class="skill-fill" data-pct="93"></div></div>
+          </div>
+        </div>
+        <div class="software-tags reveal">
+          <span class="sw-tag">Premiere Pro</span>
+          <span class="sw-tag">After Effects</span>
+          <span class="sw-tag">Photoshop</span>
+          <span class="sw-tag">CapCut Pro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED BANNER -->
+<section id="featured">
+  <div class="featured-reel">
+    <div class="featured-bg"></div>
+    <div class="featured-text">
+      <div class="featured-eyebrow">Selected Work</div>
+      <div class="featured-big">PORTFOLIO</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal">Recent <span>Projects</span></h2>
+    <div class="filter-bar reveal" id="filter-bar">
+      <button class="filter-btn active" data-cat="null">All</button>
+    </div>
+    <div class="media-grid" id="media-grid"></div>
+    <div class="load-more-wrap">
+      <button class="btn-outline" id="load-more-btn" style="display:none">Load More Projects</button>
+      <div class="pagination-info" id="pagination-info"></div>
+    </div>
+  </div>
+</section>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="section-label">Contact</div>
+        <h3>Let's Create<br>Something <span style="color:var(--neon-cyan)">Cinematic</span></h3>
+        <p class="contact-desc">
+          Available for freelance projects, long-term collaborations, and creative partnerships.
+          Fast turnaround. Premium quality. Let's talk.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:rajinikanth0070@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉</div>
+            rajinikanth0070@gmail.com
+          </a>
+          <a href="https://wa.me/6303651940" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💬</div>
+            WhatsApp: +91 6303651940
+          </a>
+          <a href="https://instagram.com/rajinikanth_mr" target="_blank" class="contact-link">
+            <div class="contact-link-icon">📸</div>
+            @rajinikanth_mr
+          </a>
+        </div>
+      </div>
+      <div class="contact-form-wrap reveal reveal-delay-2">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Web3Forms Configuration -->
+          <input type="hidden" name="access_key" value="26be489a-3b6a-4476-874c-21fc5fff1362">
+          <input type="hidden" name="subject" value="New Portfolio Inquiry!">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          <input type="hidden" name="redirect" value="http://127.0.0.1:5500/index.html">
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Name</label>
+              <input class="form-input" name="Name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" name="Email" type="email" placeholder="your@email.com" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Project Type</label>
+            <input class="form-input" name="Project_Type" type="text" placeholder="Cinematic / Gaming / Reels / Commercial">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Budget</label>
+            <input class="form-input" name="Budget" type="text" placeholder="Your budget range">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-input form-textarea" name="Message" placeholder="Describe your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="align-self:flex-start">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Rajinikanth</div>
+    <div class="footer-copy">
+      © 2024 Rajinikanth — All Rights Reserved<br>
+      <span style="color:var(--text-muted);font-size:10px">Built with passion for cinematic storytelling</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://instagram.com/rajinikanth_mr" target="_blank" class="social-btn">📸</a>
+      <a href="https://wa.me/6303651940" target="_blank" class="social-btn">💬</a>
+      <a href="mailto:rajinikanth0070@gmail.com" class="social-btn">✉</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
