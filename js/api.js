@@ -1,6 +1,6 @@
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 // In production, change the fallback URL to your actual deployed backend URL (e.g. https://axiom-backend.onrender.com/api)
-const API_BASE = isLocal ? 'http://localhost:8080/api' : 'https://axiom-backend-g58i.onrender.com/apis';
+const API_BASE = isLocal ? 'http://localhost:8080/api' : 'https://axiom-backend-g58i.onrender.com/api';
 
 const api = {
 
